@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Files</title>
+<style type="text/css">
+   #content{
+        text-align: center;
+   	width: 50%;
+   	margin: 20px auto;
+   	border: 1px solid #cbcbcb;
+   }
+   form{
+   	width: 50%;
+   	margin: 20px auto;
+   }
+   form div{
+   	margin-top: 5px;
+   }
+   #img_div{
+   	width: 80%;
+   	padding: 5px;
+   	margin: 15px auto;
+   	border: 1px solid #cbcbcb;
+   }
+   #img_div:after{
+   	content: "";
+   	display: block;
+   	clear: both;
+   }
+   img{
+    display: block;
+    width:100%;
+    max-width:600px;
+    max-height:600px;
+    width: auto;
+    height: auto;
+   }
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div id=content>
+ <a href="hornwortbase.php">Search</a> | <a href="blast.php">BLAST</a> | <a href="extract.php">Extract sequence</a>
+</div>
+<div>
+ <h1><i>Anthoceros agrestis</i> 'Oxford'</h1>
+ <p><a href="./tars/Anthoceros_agrestis_Oxford.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Anthoceros_agrestis_Oxford_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Anthoceros_agrestis_Oxford_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_agrestis_Oxford_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Anthoceros_agrestis_Oxford_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_agrestis_Oxford_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href="./fastas/Anthoceros_agrestis_Oxford_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_agrestis_Oxford_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Anthoceros_agrestis_Oxford_gene_annotations.gff" download>GFF</a></p>
+ <p>Chloroplast Genome: <a href="./plastome/Anthoceros_agrestis_Oxford_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Anthoceros_agrestis_Oxford_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Anthoceros_agrestis_Oxford_GFF3.gff3" download>GFF</a></p>
+ <br>
+ <h1><i>Anthoceros fusiformis</i></h1>
+ <p><a href="./tars/Anthoceros_fusiformis.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Anthoceros_fusiformis_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Anthoceros_fusiformis_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_fusiformis_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Anthoceros_fusiformis_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_fusiformis_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Anthoceros_fusiformis_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_fusiformis_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Anthoceros_fusiformis_gene_annotations.gff" download>GFF</a></p>
+ <p>Chloroplast Genome: <a href="./plastome/Anthoceros_fusiformis_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Anthoceros_fusiformis_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Anthoceros_fusiformis_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Anthoceros punctatus</i></h1>
+ <p><a href="./tars/Anthoceros_punctatus.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Anthoceros_punctatus_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Anthoceros_punctatus_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_punctatus_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Anthoceros_punctatus_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_punctatus_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Anthoceros_punctatus_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Anthoceros_punctatus_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Anthoceros_punctatus_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Anthoceros_punctatus_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Anthoceros_punctatus_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Anthoceros_punctatus_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Leiosporoceros dussii</i></h1>
+ <p><a href="./tars/Leiosporoceros_dussii.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Leiosporoceros_dussii_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Leiosporoceros_dussii_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Leiosporoceros_dussii_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Leiosporoceros_dussii_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Leiosporoceros_dussii_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Leiosporoceros_dussii_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Leiosporoceros_dussii_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Leiosporoceros_dussii_gene_annotations.gff" download>GFF</a></p>
+ <p>Chloroplast Genome: <a href="./plastome/Leiosporoceros_dussii_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Leiosporoceros_dussii_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Leiosporoceros_dussii_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Megaceros flagellaris</i></h1>
+ <p><a href="./tars/Megaceros_flagellaris.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Megaceros_flagellaris_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Megaceros_flagellaris_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Megaceros_flagellaris_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Megaceros_flagellaris_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Megaceros_flagellaris_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Megaceros_flagellaris_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Megaceros_flagellaris_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Megaceros_flagellaris_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Megaceros_flagellaris_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Megaceros_flagellaris_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Megaceros_flagellaris_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Notothylas orbicularis</i></h1>
+ <p><a href="./tars/Notothylas_orbicularis.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Notothylas_orbicularis_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Notothylas_orbicularis_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Notothylas_orbicularis_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Notothylas_orbicularis_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Notothylas_orbicularis_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Notothylas_orbicularis_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Notothylas_orbicularis_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Notothylas_orbicularis_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Notothylas_orbicularis_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Notothylas_orbicularis_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Notothylas_orbicularis_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Paraphymatoceros pearsonii</i></h1>
+ <p><a href="./tars/Paraphymatoceros_pearsonii.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Paraphymatoceros_pearsonii_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Paraphymatoceros_pearsonii_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Paraphymatoceros_pearsonii_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Paraphymatoceros_pearsonii_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Paraphymatoceros_pearsonii_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Paraphymatoceros_pearsonii_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Paraphymatoceros_pearsonii_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Paraphymatoceros_pearsonii_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Paraphymatoceros_pearsonii_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Paraphymatoceros_pearsonii_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Paraphymatoceros_pearsonii_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Phaeoceros carolinianus</i></h1>
+ <p><a href="./tars/Phaeoceros_carolinianus.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Phaeoceros_carolinianus_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Phaeoceros_carolinianus_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_carolinianus_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Phaeoceros_carolinianus_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_carolinianus_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Phaeoceros_carolinianus_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_carolinianus_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Phaeoceros_carolinianus_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Phaeoceros_carolinianus_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Phaeoceros_carolinianus_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Phaeoceros_carolinianus_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Phaeoceros sp.</i></h1>
+ <p><a href="./tars/Phaeoceros_sp.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Phaeoceros_sp_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Phaeoceros_sp_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_sp_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Phaeoceros_sp_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_sp_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Phaeoceros_sp_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeoceros_sp_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Phaeoceros_sp_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Phaeoceros_sp_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Phaeoceros_sp_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Phaeoceros_sp_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Phaeomegaceros chiloensis</i></h1>
+ <p><a href="./tars/Phaeomegaceros_chiloensis.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Phaeomegaceros_chiloensis_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Phaeomegaceros_chiloensis_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeomegaceros_chiloensis_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Phaeomegaceros_chiloensis_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeomegaceros_chiloensis_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Phaeomegaceros_chiloensis_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phaeomegaceros_chiloensis_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Phaeomegaceros_chiloensis_gene_annotations.gff" download>GFF</a></p> 
+ <p>Chloroplast Genome: <a href="./plastome/Phaeomegaceros_chiloensis_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Phaeomegaceros_chiloensis_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Phaeomegaceros_chiloensis_GFF3.gff3" download>GFF</a></p>
+<br>
+ <h1><i>Phymatoceros phymatodes</i></h1>
+ <p><a href="./tars/Phymatoceros_phymatodes.tar.gz" download> TAR archive</a></p>
+ <p>Genome: <a href= "./fastas/Phymatoceros_phymatodes_genome.fasta" download>FASTA</a></p>
+ <p>Transcripts: <a href= "./fastas/Phymatoceros_phymatodes_TRANS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phymatoceros_phymatodes_TRANS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>CDS: <a href= "./fastas/Phymatoceros_phymatodes_CDS.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phymatoceros_phymatodes_CDS_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Proteins: <a href= "./fastas/Phymatoceros_phymatodes_PROT.fasta" download>All transcript FASTA</a> | <a href= "./fastas/Phymatoceros_phymatodes_PROT_primary_transcripts.fasta" download>Primary transcript FASTA</a></p>
+ <p>Gene Annotations: <a href="./gffs/Phymatoceros_phymatodes_gene_annotations.gff" download>GFF</a></p>
+ <p>Chloroplast Genome: <a href="./plastome/Phymatoceros_phymatodes_chloroplast_genome.fasta" download>FASTA</a></p>
+ <p>Chloroplast Gene Annotations (auto-generated): <a href="./plastome/Phymatoceros_phymatodes_GenBank.gb" download>GenBank (.gb)</a> | <a href="./plastome/Phymatoceros_phymatodes_GFF3.gff3" download>GFF</a></p>
+</div>
+<div id=content>
+ <a href="hornwortbase.php">Search</a> | <a href="blast.php">BLAST</a> | <a href="extract.php">Extract sequence</a>
+</div>
+</body>
+</html>
