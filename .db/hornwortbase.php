@@ -13,6 +13,10 @@ if (isset($_GET['transcript'])) {
     $eggnog_results = $eggnog->query($query);
     $ogrev_results = $orthogroupsrev->query($query);
     $expression_results = $expression->query($query);
+    $trans = shell_exec("getFromFasta.py ./fastas/All_hornworts_TRANS.fasta {$transcript} 2>&1");
+    $cds = shell_exec("getFromFasta.py ./fastas/All_hornworts_CDS.fasta {$transcript} 2>&1");
+    $prot = shell_exec("getFromFasta.py ./fastas/All_hornworts_PROT.fasta {$transcript} 2>&1");
+    $annot = shell_exec("grep -w {$transcript} ./gffs/All_hornworts_gene_annotations.gff 2>&1");
   }
  }
 else if (isset($_GET['orthogroup'])) {
@@ -32,6 +36,10 @@ if (isset($_POST['search'])) {
     $eggnog_results = $eggnog->query($query);
     $ogrev_results = $orthogroupsrev->query($query);
     $expression_results = $expression->query($query);
+    $trans = shell_exec("getFromFasta.py ./fastas/All_hornworts_TRANS.fasta {$transcript} 2>&1");
+    $cds = shell_exec("getFromFasta.py ./fastas/All_hornworts_CDS.fasta {$transcript} 2>&1");
+    $prot = shell_exec("getFromFasta.py ./fastas/All_hornworts_PROT.fasta {$transcript} 2>&1");
+    $annot = shell_exec("grep -w {$transcript} ./gffs/All_hornworts_gene_annotations.gff 2>&1");
     }
   else if(!empty($orthogroup)) {
     $query = "SELECT * FROM MAIN WHERE ORTHOGROUP LIKE '$orthogroup'";
@@ -69,19 +77,35 @@ while($row = $ogrev_results->fetchArray()){
   }
 
 while($row = $expression_results->fetchArray()){
-  echo "Gene expression<br>  FPKM: " . $row['FPKM'] . "<br>  TPM:  " . $row['TPM'] . "<br>  Relative level: " . $row['RelativeExpression'];
+  echo "Gene expression<br>  FPKM: " . $row['FPKM'] . "<br>  TPM:  " . $row['TPM'] . "<br>  Relative level: " . $row['RelativeExpression'] . "<br>";
   }
+echo '<br><div class="seq">Transcript sequence (with introns):';
+echo "<p>{$trans}</p></div>";
+echo '<div class="seq">CDS sequence (without introns):';
+echo "<p>{$cds}</p></div>";
+echo '<div class="seq">Translated CDS sequence:';
+echo "<p>{$prot}</p></div>";
+echo "<br>Gene Features:";
+echo "<table>";
+echo "<tr><th>Seqname</th><th>Source</th><th>Feature</th><th>Start</th><th>End</th><th>Score</th><th>Strand</th><th>Frame</th><th>Attributes</th></tr>";
+$annotArr = explode("\n", $annot);
+  foreach($annotArr as $line){
+    if(!empty($line)){
+      $item = explode("\t", $line);
+      echo "<tr><td>{$item[0]}</td><td>{$item[1]}</td><td>{$item[2]}</td><td>{$item[3]}</td><td>{$item[4]}</td><td>{$item[5]}</td><td>{$item[6]}</td><td>{$item[7]}</td><td>{$item[8]}</td></tr>";
+    }
+  }
+echo "</table>";
 echo "</pre>";
 }
 
 if (!empty($og_results)){
   $row = $og_results->fetchArray();
-  echo "<pre>";
   foreach($row as $key => $value){
     if (!is_int($key)) {
       if (!empty($value)){
 	if ($key == "Orthogroup"){
-          echo "{$value} | <a href=fastas/{$value}.fa>SEQUENCES</a> | <a href=trees/{$value}_tree.txt>TREE</a>";
+          echo "{$value} | <a href=fastas/{$value}.fa>SEQUENCES</a> | <a href=alignments/{$value}.CLUSTAL.fa>ALIGNMENT</a> | <a href=alignments_trimmed/{$value}.CLUSTAL.TRIM.fa>TRIMMED ALIGNMENT</a> | <a href=trees/{$value}_tree.txt>TREE</a>";
          }
         else {
           $seqArray = explode(',' , $value);
@@ -104,9 +128,30 @@ if (isset($_POST['descrip_search'])) {
 		if (!empty($description_results)){
 			echo "<pre>";
 			echo "<table>";
-		  echo "<tr><th>Transcript ID</th><th>Gene Name</th><th>Gene Description</th></tr>";
+		  echo "<tr><th>Transcript ID</th><th>Orthogroup</th><th>Gene Name</th><th>Gene Description</th></tr>";
 		  while($row = $description_results->fetchArray()) {
-				echo "<tr><td><a href=hornwortbase.php?transcript={$row['query']}>{$row['query']}</a></td><td>{$row['Preferred_name']}</td><td>{$row['Description']}</td></tr>";
+				$transcript = SQLite3::escapeString($row['query']);
+				$og_query = "SELECT * FROM MAIN WHERE QUERY LIKE '$transcript'";
+				echo "<tr><td><a href=hornwortbase.php?transcript={$row['query']}>{$row['query']}</a></td>";
+				$ogrev_results = $orthogroupsrev->query($og_query);
+				if (!empty(($ogrev_results->fetchArray()))) {
+					$ogrev_results->reset();
+					while($row2 = $ogrev_results->fetchArray()) {
+  						if (!empty($row2[1])){
+							echo "<td><a href=hornwortbase.php?orthogroup=" . $row2['Orthogroup'] . ">" . $row2['Orthogroup'] . "</a></td>";
+							}
+						else {
+							echo "<td>NA</td>";
+							}
+						}
+					}
+				else {
+					echo "<td>-</td>";
+					}
+				$ogrev_results->finalize();
+				unset($ogrev_results);
+				unset($row2);
+				echo "<td>{$row['Preferred_name']}</td><td>{$row['Description']}</td></tr>";
 			}
 			echo "</table>";
 			echo "</pre>";
@@ -119,7 +164,7 @@ if (isset($_POST['descrip_search'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<title>Image Search</title>
+<title>HornwortBase</title>
 <style type="text/css">
    #content{
    	width: 50%;
@@ -152,43 +197,50 @@ if (isset($_POST['descrip_search'])) {
     width: auto;
     height: auto;
    }
-
+   div{
+   }
+   .seq{
+    max-width: 80ch;
+    word-break: break-word;
+    white-space: pre-wrap;
+   }
+   p{
+   }
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id="content">
+ <div id="content" align="center">
+  <a href="downloads.html">Download Files</a> | <a href="blast.php">BLAST</a> | <a href="extract.php">Extract sequence</a>
+ </div>
+  <div id="content" align="center">
   <form method="post" action="hornwortbase.php" enctype="multipart/form-data">
+    <p>
       <b>Transcript ID</b>
-      <div>
-        <input type="text" name="transcript" placeholder="" value="<?php if (isset($_REQUEST['transcript'])) echo $_REQUEST['transcript']?>">
-      </div>
-      <br>
+      <input type="text" name="transcript" placeholder="" value="<?php if (isset($_REQUEST['transcript'])) echo $_REQUEST['transcript']?>">
+    </p>
+    <p>
       <b>Orthogroup ID</b>
-      <div>
-        <input type="text" name="orthogroup" placeholder="" value="<?php if (isset($_REQUEST['orthogroup'])) echo $_REQUEST['orthogroup']?>">
-      </div>
-    <div>
+      <input type="text" name="orthogroup" placeholder="" value="<?php if (isset($_REQUEST['orthogroup'])) echo $_REQUEST['orthogroup']?>">
+    </p>
+    <p>
     	<button type="submit" name="search">SEARCH</button>
-    </div>
+    </p>
   </form>
   </div>
-	<div id="content">
-	<form method="post" action="hornwortbase.php" enctype="multipart/form-data">
-			<b>Search gene functions by name/description</b>
-			<div>
-				<input type="text" name="description" placeholder="" value="<?php if (isset($_REQUEST['description'])) echo $_REQUEST['description']?>">
-			</div>
-		<div>
-			<button type="submit" name="descrip_search">SEARCH</button>
-		</div>
-	</form>
-	</div>
- <div>
-  <a href="downloads.html">Download Files</a>
- </div>
- <div>
-  <a href="blast.php">BLAST</a>
+  <div id="content" align="center">
+    <form method="post" action="hornwortbase.php" enctype="multipart/form-data">
+      <b>Search gene functions by name/description</b>
+      <div>
+        <input type="text" name="description" placeholder="" value="<?php if (isset($_REQUEST['description'])) echo $_REQUEST['description']?>">
+      </div>
+      <div>
+        <button type="submit" name="descrip_search">SEARCH</button>
+      </div>
+    </form>
+  </div>
+ <div id="content" align="center">
+  <a href="downloads.html">Download Files</a> |  <a href="blast.php">BLAST</a> |  <a href="extract.php">Extract sequences</a>
  </div>
 </body>
 </html>
