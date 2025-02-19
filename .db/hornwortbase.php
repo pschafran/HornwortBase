@@ -128,26 +128,32 @@ if (isset($_POST['descrip_search'])) {
 		if (!empty($description_results)){
 			echo "<pre>";
 			echo "<table>";
-		  echo "<tr><th>Transcript ID</th><th>Orthogroup</th><th>Gene Name</th><th>Gene Description</th></tr>";
-		  while($row = $description_results->fetchArray()) {
+		echo "<tr><th>Transcript ID</th><th>Orthogroup</th><th>Gene Name</th><th>Gene Description</th></tr>";
+		// loop through each line searching reverse orthogroup db for each transcript name
+		while($row = $description_results->fetchArray()) {
 				$transcript = SQLite3::escapeString($row['query']);
 				$og_query = "SELECT * FROM MAIN WHERE QUERY LIKE '$transcript'";
 				echo "<tr><td><a href=hornwortbase.php?transcript={$row['query']}>{$row['query']}</a></td>";
 				$ogrev_results = $orthogroupsrev->query($og_query);
+				// check if the results from the db search are empty (if transcript is missing from db, still returns true)
 				if (!empty(($ogrev_results->fetchArray()))) {
+					// reset to brginning of db to check again for missing values
 					$ogrev_results->reset();
+					// parse results from reverse orthogroup db search
 					while($row2 = $ogrev_results->fetchArray()) {
+						// catch any other rsults missing an orthogroup value
   						if (!empty($row2[1])){
 							echo "<td><a href=hornwortbase.php?orthogroup=" . $row2['Orthogroup'] . ">" . $row2['Orthogroup'] . "</a></td>";
 							}
 						else {
-							echo "<td>NA</td>";
+							echo "<td>-</td>";
 							}
 						}
 					}
 				else {
 					echo "<td>-</td>";
 					}
+				// close db results and unset variables to make sure they aren't carried to next iteration of loop
 				$ogrev_results->finalize();
 				unset($ogrev_results);
 				unset($row2);
